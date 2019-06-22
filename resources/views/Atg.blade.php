@@ -18,11 +18,11 @@
 				</ul>
 			</div>
 		@endif
-		@isset($success)
+		@if (Session::has('success'))
 			<div class="alert alert-success col-lg-6 mx-auto">
-				{{ $success }}
+				{!! session('success') !!}
 			</div>
-		@endisset
+		 @endif
 		<form action="{{URL::to('/')}}/store" method="POST">
 			<div class="col-lg-6 mx-auto">
 				@csrf
@@ -38,31 +38,32 @@
 			</div>
 		</form><br><br><br>
 
-		<div class="container">
+		<div class="container text-center">
 			
 			@if(sizeof($persons) > 0)
+			<h3 class="text-center">Data Table</h3><br>
 				<table class="table table-bordered">
-					<thead>
+					<thead class="bg-info">
 						<tr>
 							<td>Name</td>
 							<td>Email</td>
 							<td>Pin</td>
 						</tr>
 					</thead>
-					<tbody>				
+					<tbody class="bg-warning">				
 						@foreach($persons as $person)
 							
-							<td>
-								<tr>{{$person['name']}}</tr>
-								<tr>{{$person['email']}}</tr>
-								<tr>{{$person['pin']}}</tr>
-							</td>
+							<tr>
+								<td>{{$person['name']}}</td>
+								<td>{{$person['email']}}</td>
+								<td>{{$person['pin']}}</td>
+							</tr>
 
 						@endforeach
 					</tbody>
 				</table>
 			@endif
 		</div>
-	</div>
+	</div><br><br><br><br>
 </body>
 </html>
