@@ -5,38 +5,31 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Atg;
+use Session;
 
 class AtgController extends Controller
 {
+    use \App\Traits\AtgTrait;
+
     public function index()
     {
         $data = Atg::all()->toArray();
         
     	return view('Atg',["persons"=>$data]);
+
     }
 
-    public function store(Request $request)
+    public function storeandview(Request $request)
     {
-    	$request->validate([
-
-    		'name'	=>	'required|alpha_spaces|unique:persons',
-    		'email'	=>	'required|email|unique:persons',
-    		'pin'	=>	'required|unique:persons|digits:6',
-
-    	]);
-
-    	$person = new Atg();
-
-    	$person->name = $request->post('name');
-    	$person->email = $request->post('email');
-    	$person->pin = $request->post('pin');
-
-    	$person->save();
+        $result = $this->store($request);
         
-        \Session::flash('success', 'Data Insert Successfully.');
-        
-    	return redirect()->route('home');
+        if($result["status"])
+            Session::flash('success', $result["msg"]);
+        else
+            Session::flash('error', $result["msg"]);
 
+        return redirect()->back()->withInput();
     }
+
 
 }

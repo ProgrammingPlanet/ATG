@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//all route will we in type /api/xxxx
+
+Route::put('/store','WebServiceController@storeandresponce');

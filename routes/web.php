@@ -10,8 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'AtgController@index')->name('home');
 
-Route::post('/store', 'AtgController@store');
+Route::get('/', 'AtgController@index');
+
+Route::post('/store', 'AtgController@storeandview');
 
 

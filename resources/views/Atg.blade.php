@@ -2,24 +2,19 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>ATG - Task 1</title>
+	<title>ATG - Task 2</title>
 	<link rel="stylesheet" href="{{URL::to('/')}}/libs/css/bootstrap.min.css">
 </head>
 <body>
 	<div class="container"><br><br>
-		<h2 class="text-center"> ATG Task 1	</h2><br><br>
-		@if($errors->any())
-			<div class="alert alert-danger col-lg-6 mx-auto">
-				<ul>
-				   	{{--@foreach ($errors->all() as $error)
-				      	<li>{{ $error }}</li>
-				  	@endforeach--}}
-				  	<li> {{$errors->first()}}</li>
-				</ul>
+		<h2 class="text-center"> ATG Task 2	</h2><br><br>
+		@if(Session::has('error'))
+			<div class="alert alert-danger col-lg-6 mx-auto small">
+				<li> {{session('error')}} </li>
 			</div>
 		@endif
 		@if (Session::has('success'))
-			<div class="alert alert-success col-lg-6 mx-auto">
+			<div class="alert alert-success col-lg-6 mx-auto small">
 				{!! session('success') !!}
 			</div>
 		 @endif

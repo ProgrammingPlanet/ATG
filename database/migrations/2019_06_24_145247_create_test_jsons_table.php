@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Persons extends Migration
+class CreateTestJsonsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class Persons extends Migration
      */
     public function up()
     {
-        Schema::create('persons', function (Blueprint $table) {
+        Schema::create('test_jsons', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('email');
-            $table->string('pin');
+            $table->json('json_data')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class Persons extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('persons');
+        Schema::dropIfExists('test_jsons');
     }
 }
