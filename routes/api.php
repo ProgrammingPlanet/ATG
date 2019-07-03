@@ -19,4 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //all route will we in type /api/xxxx
 
-Route::put('/store','WebServiceController@storeandresponce');
+Route::put('/store','WebServiceController@storeandresponce')->name('api.store');
